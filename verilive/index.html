@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#174b43">
+  <title>Verilive — Answers, with evidence.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23174b43'/%3E%3Cpath d='m10 20 7 7 13-15' fill='none' stroke='white' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Verilive home"><span class="brand-icon" aria-hidden="true">✓</span>verilive<span class="brand-dot">.</span></a>
+    <span class="header-description">AI answers. Evidence attached.</span>
+    <div class="mode-pill"><span class="live-dot"></span><span id="mode-label">LOCAL DEMO</span></div>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div><p class="eyebrow"><span class="tiny-line"></span> CLAIM-BY-CLAIM VERIFICATION</p>
+        <h1 id="page-title">Less guessing.<br><span>More grounding.</span></h1>
+        <p class="intro-copy">Ask a question. Watch the answer unfold.<br>See what the evidence actually supports.</p>
+      </div>
+      <div class="intro-note"><span class="note-symbol" aria-hidden="true">↳</span><p>Don’t just read the answer.<br><strong>Check what’s behind it.</strong></p></div>
+    </section>
+
+    <section class="question-card" aria-labelledby="question-label">
+      <form id="question-form">
+        <label id="question-label" for="question"><span class="section-number">01</span> Start with a question</label>
+        <div class="input-row"><textarea id="question" name="question" rows="2" maxlength="2000" required placeholder="What would you like to fact-check?">What are the benefits and limitations of solar energy?</textarea><button class="submit-button" id="submit" type="submit"><span id="submit-label">Verify answer</span><span id="submit-icon" aria-hidden="true">↗</span></button></div>
+        <div class="form-footer"><span id="demo-note"><span class="small-spark" aria-hidden="true">✳</span> Demo uses illustrative solar or AI answers and fictional source excerpts.</span><span class="keyboard-note">Ctrl / ⌘ + Enter to submit</span></div>
+      </form>
+    </section>
+    <div id="error" class="error-banner" role="alert" hidden></div>
+
+    <section class="summary" aria-label="Verdict counts for the current answer">
+      <div class="summary-card supported"><span class="summary-icon" aria-hidden="true">✓</span><div><span class="count" id="count-SUPPORTED">0</span><span class="count-label">Supported</span></div><span class="summary-hint">Backed by evidence</span></div>
+      <div class="summary-card partial"><span class="summary-icon" aria-hidden="true">≈</span><div><span class="count" id="count-PARTIAL">0</span><span class="count-label">Partial</span></div><span class="summary-hint">Some support</span></div>
+      <div class="summary-card insufficient"><span class="summary-icon" aria-hidden="true">?</span><div><span class="count" id="count-INSUFFICIENT">0</span><span class="count-label">Insufficient</span></div><span class="summary-hint">Not enough evidence</span></div>
+      <div class="summary-card contradicted"><span class="summary-icon" aria-hidden="true">×</span><div><span class="count" id="count-CONTRADICTED">0</span><span class="count-label">Contradicted</span></div><span class="summary-hint">Evidence disagrees</span></div>
+    </section>
+
+    <div class="workspace">
+      <section class="answer-card" aria-labelledby="answer-title">
+        <div class="card-heading"><h2 id="answer-title"><span class="section-number">02</span> The answer</h2><span id="status" class="status" role="status">Ready when you are</span></div>
+        <div class="answer-meta"><span id="answer-context">A little transparency goes a long way.</span><span id="claim-progress"></span></div>
+        <div id="answer-empty" class="answer-empty"><div class="empty-illustration" aria-hidden="true"><div class="paper-line"></div><div class="paper-line short"></div><span>✓</span><div class="paper-line"></div><div class="paper-line short"></div></div><h3>Every sentence tells a story.<br>We’ll check the facts.</h3><p>Your answer will appear here, sentence by sentence.<br>Verdicts follow as the evidence is checked.</p></div>
+        <ol id="sentences" class="sentences" aria-label="Answer sentences"></ol>
+        <div id="working" class="working" hidden><span class="spinner" aria-hidden="true"></span><span id="working-label">Preparing your answer…</span></div>
+        <div class="answer-footer"><span aria-hidden="true">↖</span> Select a sentence to inspect its evidence.</div>
+      </section>
+      <aside class="evidence-card" id="evidence-panel" aria-labelledby="evidence-title">
+        <div class="card-heading"><h2 id="evidence-title" tabindex="-1"><span class="section-number">03</span> Behind the claim</h2><button id="close-evidence" type="button" class="icon-button" aria-label="Close evidence" hidden>×</button></div>
+        <div id="evidence-empty" class="evidence-empty"><span class="inspect-icon" aria-hidden="true">⌕</span><h3>Follow the evidence.</h3><p>Select any sentence in the answer to see its verdict, matched evidence, and source document.</p><div class="evidence-example"><span class="example-dot"></span> A claim <span>→</span> The source <span>→</span> A verdict</div></div>
+        <div id="evidence-detail" hidden><div class="detail-top"><span id="claim-label" class="eyebrow"></span><span id="detail-verdict" class="badge"></span></div><h3 id="detail-claim"></h3><div class="detail-rule"></div><p class="detail-label">MATCHED EVIDENCE</p><blockquote id="detail-evidence"></blockquote><p class="detail-label source-label">SOURCE DOCUMENT</p><div class="source-box"><span aria-hidden="true">▤</span><span id="detail-source"></span></div><p class="evidence-disclaimer" id="evidence-disclaimer">Illustrative demo evidence. Not a retrieved or independently verified source.</p></div>
+      </aside>
+    </div>
+    <footer class="page-footer"><span class="footer-brand">verilive.</span><span>Make every claim accountable.</span><span id="footer-mode"><span class="live-dot"></span> Runs locally · No API key needed</span></footer>
+  </main>
+  <noscript><p class="error-banner">Please enable JavaScript to run Verilive.</p></noscript>
+</body>
+</html>
