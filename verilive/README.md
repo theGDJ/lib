@@ -11,8 +11,8 @@ Plain HTML/CSS/ES modules — **no build step, no runtime dependencies.**
 
 ```bash
 cd verilive
-python3 -m http.server 3000        # any static file server works
-# open http://localhost:3000
+python3 -m http.server 8080        # any static file server works
+# open http://localhost:8080
 ```
 
 The default config is `mode: 'mock'`: every response comes from `mock-api.js`

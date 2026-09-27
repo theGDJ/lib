@@ -11,7 +11,7 @@ const browser = await chromium.launch(launchOptions);
 const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } });
 const errors = [];
 page.on('pageerror', error => errors.push(error.message));
-const url = process.env.TEST_URL || 'http://127.0.0.1:3000';
+const url = process.env.TEST_URL || 'http://127.0.0.1:8080';
 try {
   // No external requests are allowed; a local static server is all the demo needs.
   const external = [];

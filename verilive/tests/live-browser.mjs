@@ -2,7 +2,7 @@
 // UI against tests/live-stub.mjs (cross-origin, contract-conformant, PARAPHRASED
 // claim text → exercises the positional fallback), then restores config.js.
 // Requires Playwright + Chromium (npx playwright install chromium) and a static
-// server on :3000 (python -m http.server 3000 --directory verilive).
+// server on :8080 (python -m http.server 8080 --directory verilive).
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { startStub, STUB_PORT } from './live-stub.mjs';
@@ -10,7 +10,7 @@ const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright')
 
 const configUrl = new URL('../config.js', import.meta.url);
 const originalConfig = await readFile(configUrl, 'utf8');
-const pageUrl = process.env.TEST_URL || 'http://127.0.0.1:3000';
+const pageUrl = process.env.TEST_URL || 'http://127.0.0.1:8080';
 let browser, stub;
 try {
   stub = await startStub();
